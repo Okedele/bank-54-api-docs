@@ -1,0 +1,844 @@
+# Partner
+
+## Register partner app
+```shell
+curl --location --request POST 'http://127.0.0.1:3333/partner' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao' \
+--data-raw '{
+    "name": "Paystack",
+    "street": "Olaniyi",
+    "city": "Ikeja",
+    "state": "Lagos",
+    "country": "Nigeria",
+    "email": "company@gmail.com",
+    "contact_number": "08000000001",
+    "business_registration": "a1b2c3",
+    "user": 1
+}'
+```
+```python
+import requests
+import json
+
+url = "http://127.0.0.1:3333/partner"
+
+payload = json.dumps({
+  "name": "Paystack",
+  "street": "Olaniyi",
+  "city": "Ikeja",
+  "state": "Lagos",
+  "country": "Nigeria",
+  "email": "company@gmail.com",
+  "contact_number": "08000000001",
+  "business_registration": "a1b2c3",
+  "user": 1
+})
+headers = {
+  'Content-Type': 'application/json',
+  'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao'
+}
+
+response = requests.request("POST", url, headers=headers, data=payload)
+
+print(response.text)
+
+```
+```javascript
+var axios = require('axios');
+var data = JSON.stringify({
+  "name": "Paystack",
+  "street": "Olaniyi",
+  "city": "Ikeja",
+  "state": "Lagos",
+  "country": "Nigeria",
+  "email": "company@gmail.com",
+  "contact_number": "08000000001",
+  "business_registration": "a1b2c3",
+  "user": 1
+});
+
+var config = {
+  method: 'post',
+  url: 'http://127.0.0.1:3333/partner',
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao'
+  },
+  data : data
+};
+
+axios(config)
+.then(function (response) {
+  console.log(JSON.stringify(response.data));
+})
+.catch(function (error) {
+  console.log(error);
+});
+
+```
+
+> Example Response
+
+```json
+{
+    "message": {
+        "success": "Partner created successfully"
+    },
+    "data": {
+        "partner": {
+            "name": "Paystack",
+            "street": "Olaniyi",
+            "city": "Ikeja",
+            "state": "Lagos",
+            "country": "Nigeria",
+            "email": "company@gmail.com",
+            "contact_number": "08000000001",
+            "business_registration": "a1b2c3",
+            "user": 1,
+            "created_at": "2021-04-28 10:16:53",
+            "updated_at": "2021-04-28 10:16:53",
+            "id": 1
+        }
+    }
+}
+```
+This endpoint is used to register partner apps.
+
+### HTTP Request
+
+`POST /partner`
+
+
+### HEADERS
+|Content-Type|Authorization|
+|-----------|------------|
+|application/json|Bearer `{{TOKEN}}`|
+
+## Fetch partner apps
+```shell
+curl --location --request GET 'http://127.0.0.1:3333/partner' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao'
+```
+```python
+import requests
+import json
+
+url = "http://127.0.0.1:3333/partner"
+
+payload={}
+headers = {
+  'Content-Type': 'application/json',
+  'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao',
+  '': ''
+}
+
+response = requests.request("GET", url, headers=headers, data=payload)
+
+print(response.text)
+
+```
+```javascript
+var axios = require('axios');
+
+var config = {
+  method: 'get',
+  url: 'http://127.0.0.1:3333/partner',
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao',
+    '': ''
+  }
+};
+
+axios(config)
+.then(function (response) {
+  console.log(JSON.stringify(response.data));
+})
+.catch(function (error) {
+  console.log(error);
+});
+
+```
+
+> Example Response
+
+```json
+{
+    "message": {
+        "success": "Partners retrieved successfully"
+    },
+    "data": {
+        "partners": [
+            {
+                "id": 1,
+                "name": "Paystack",
+                "street": "Olaniyi",
+                "city": "Ikeja",
+                "state": "Lagos",
+                "country": "Nigeria",
+                "email": "company@gmail.com",
+                "contact_number": "08000000001",
+                "business_registration": "a1b2c3",
+                "user": 1,
+                "is_deleted": false,
+                "created_at": "2021-04-28 11:16:53",
+                "updated_at": "2021-04-28 11:16:53",
+                "partner_user": {
+                    "id": 1,
+                    "username": "test123",
+                    "email": "test@gmail.co",
+                    "app_key": null,
+                    "is_deleted": false,
+                    "created_at": "2021-04-28 11:13:17",
+                    "updated_at": "2021-04-28 11:13:17"
+                }
+            }
+        ]
+    }
+}
+```
+This endpoint is used to fetch all partner apps.
+
+### HTTP Request
+
+`GET /partner`
+
+
+### HEADERS
+|Content-Type|Authorization|
+|-----------|------------|
+|application/json|Bearer `{{TOKEN}}`|
+
+## Fetch partner app details
+```shell
+curl --location --request GET 'http://127.0.0.1:3333/partner/1' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao'
+```
+```python
+import requests
+import json
+
+url = "http://127.0.0.1:3333/partner/1"
+
+payload={}
+headers = {
+  'Content-Type': 'application/json',
+  'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao'
+}
+
+response = requests.request("GET", url, headers=headers, data=payload)
+
+print(response.text)
+
+```
+```javascript
+var axios = require('axios');
+
+var config = {
+  method: 'get',
+  url: 'http://127.0.0.1:3333/partner/1',
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao'
+  }
+};
+
+axios(config)
+.then(function (response) {
+  console.log(JSON.stringify(response.data));
+})
+.catch(function (error) {
+  console.log(error);
+});
+
+```
+
+> Example Response
+
+```json
+{
+    "message": {
+        "success": "Partner retrieved successfully"
+    },
+    "data": {
+        "partner": {
+            "id": 1,
+            "name": "Paystack",
+            "street": "Olaniyi",
+            "city": "Ikeja",
+            "state": "Lagos",
+            "country": "Nigeria",
+            "email": "company@gmail.com",
+            "contact_number": "08000000001",
+            "business_registration": "a1b2c3",
+            "user": 1,
+            "is_deleted": false,
+            "created_at": "2021-04-28 11:16:53",
+            "updated_at": "2021-04-28 11:16:53",
+            "partner_user": {
+                "id": 1,
+                "username": "test123",
+                "email": "test@gmail.co",
+                "app_key": null,
+                "is_deleted": false,
+                "created_at": "2021-04-28 11:13:17",
+                "updated_at": "2021-04-28 11:13:17"
+            }
+        }
+    }
+}
+```
+This endpoint is used to fetch partner app details.
+
+### HTTP Request
+
+`GET /partner/{partner_id}`
+
+
+### HEADERS
+|Content-Type|Authorization|
+|-----------|------------|
+|application/json|Bearer `{{TOKEN}}`|
+
+## Fetch all transactions for all customers for partner
+```shell
+curl --location --request GET 'http://127.0.0.1:3333/partner/customer-transaction/1' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao'
+```
+```python
+import requests
+import json
+
+url = "http://127.0.0.1:3333/partner/customer-transaction/1"
+
+payload={}
+headers = {
+  'Content-Type': 'application/json',
+  'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao'
+}
+
+response = requests.request("GET", url, headers=headers, data=payload)
+
+print(response.text)
+
+```
+```javascript
+var axios = require('axios');
+
+var config = {
+  method: 'get',
+  url: 'http://127.0.0.1:3333/partner/customer-transaction/1',
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao'
+  }
+};
+
+axios(config)
+.then(function (response) {
+  console.log(JSON.stringify(response.data));
+})
+.catch(function (error) {
+  console.log(error);
+});
+
+```
+
+> Example Response
+
+```json
+{
+    "message": {
+        "success": "Customer transactionns retrieved successfully"
+    },
+    "data": {
+        "customerTransactionns": [
+            {
+                "id": 1,
+                "account_balance": 5000,
+                "credit": 100,
+                "debit": null,
+                "description": "A test transaction",
+                "customer": 1,
+                "account": 1,
+                "is_deleted": false,
+                "created_at": "2021-04-28 15:12:07",
+                "updated_at": "2021-04-28 15:12:07",
+                "transaction_customer": {
+                    "id": 1,
+                    "business_name": "Chronos software solutions",
+                    "unique_id": "123456789",
+                    "unique_id_type": "bvn",
+                    "first_name": "John",
+                    "last_name": "Doe",
+                    "other_names": "Smith",
+                    "mother_maiden_name": "Jane",
+                    "gender": "male",
+                    "marital_status": "single",
+                    "date_of_birth": null,
+                    "street": "12 Olaniyi street ",
+                    "city": "Ikeja",
+                    "state": "Lagos",
+                    "country": "Nigeria",
+                    "email": "company@gmail.com",
+                    "contact_number": "08000000001",
+                    "occupation": "Software Developer",
+                    "office_street": "229 Herbert Macaulay ",
+                    "office_city": "Yaba",
+                    "office_state": "Lagos",
+                    "office_country": "Nigeria",
+                    "next_of_kin": null,
+                    "geo_cordinates": null,
+                    "is_deleted": false,
+                    "created_at": "2021-04-28 15:13:37",
+                    "updated_at": "2021-04-28 15:13:37"
+                },
+                "transaction_account": {
+                    "id": 1,
+                    "bank_name": "GT Bank",
+                    "account_number": "123456789",
+                    "account_type": "individual savings",
+                    "bvn": "123456789",
+                    "currency": "NGN",
+                    "denomination": 1000,
+                    "balance": 5000,
+                    "customer": 1,
+                    "is_deleted": false,
+                    "created_at": "2021-04-28 15:19:16",
+                    "updated_at": "2021-04-28 15:19:16"
+                }
+            },
+            {
+                "id": 3,
+                "account_balance": 5000,
+                "credit": 110,
+                "debit": null,
+                "description": "2nd test",
+                "customer": 1,
+                "account": 1,
+                "is_deleted": false,
+                "created_at": "2021-04-28 15:12:07",
+                "updated_at": "2021-04-28 15:12:07",
+                "transaction_customer": {
+                    "id": 1,
+                    "business_name": "Chronos software solutions",
+                    "unique_id": "123456789",
+                    "unique_id_type": "bvn",
+                    "first_name": "John",
+                    "last_name": "Doe",
+                    "other_names": "Smith",
+                    "mother_maiden_name": "Jane",
+                    "gender": "male",
+                    "marital_status": "single",
+                    "date_of_birth": null,
+                    "street": "12 Olaniyi street ",
+                    "city": "Ikeja",
+                    "state": "Lagos",
+                    "country": "Nigeria",
+                    "email": "company@gmail.com",
+                    "contact_number": "08000000001",
+                    "occupation": "Software Developer",
+                    "office_street": "229 Herbert Macaulay ",
+                    "office_city": "Yaba",
+                    "office_state": "Lagos",
+                    "office_country": "Nigeria",
+                    "next_of_kin": null,
+                    "geo_cordinates": null,
+                    "is_deleted": false,
+                    "created_at": "2021-04-28 15:13:37",
+                    "updated_at": "2021-04-28 15:13:37"
+                },
+                "transaction_account": {
+                    "id": 1,
+                    "bank_name": "GT Bank",
+                    "account_number": "123456789",
+                    "account_type": "individual savings",
+                    "bvn": "123456789",
+                    "currency": "NGN",
+                    "denomination": 1000,
+                    "balance": 5000,
+                    "customer": 1,
+                    "is_deleted": false,
+                    "created_at": "2021-04-28 15:19:16",
+                    "updated_at": "2021-04-28 15:19:16"
+                }
+            },
+            {
+                "id": 6,
+                "account_balance": 7000,
+                "credit": 2000,
+                "debit": null,
+                "description": "Making a deposit",
+                "customer": 1,
+                "account": 1,
+                "is_deleted": false,
+                "created_at": "2021-04-29 18:20:51",
+                "updated_at": "2021-04-29 18:20:51",
+                "transaction_customer": {
+                    "id": 1,
+                    "business_name": "Chronos software solutions",
+                    "unique_id": "123456789",
+                    "unique_id_type": "bvn",
+                    "first_name": "John",
+                    "last_name": "Doe",
+                    "other_names": "Smith",
+                    "mother_maiden_name": "Jane",
+                    "gender": "male",
+                    "marital_status": "single",
+                    "date_of_birth": null,
+                    "street": "12 Olaniyi street ",
+                    "city": "Ikeja",
+                    "state": "Lagos",
+                    "country": "Nigeria",
+                    "email": "company@gmail.com",
+                    "contact_number": "08000000001",
+                    "occupation": "Software Developer",
+                    "office_street": "229 Herbert Macaulay ",
+                    "office_city": "Yaba",
+                    "office_state": "Lagos",
+                    "office_country": "Nigeria",
+                    "next_of_kin": null,
+                    "geo_cordinates": null,
+                    "is_deleted": false,
+                    "created_at": "2021-04-28 15:13:37",
+                    "updated_at": "2021-04-28 15:13:37"
+                },
+                "transaction_account": {
+                    "id": 1,
+                    "bank_name": "GT Bank",
+                    "account_number": "123456789",
+                    "account_type": "individual savings",
+                    "bvn": "123456789",
+                    "currency": "NGN",
+                    "denomination": 1000,
+                    "balance": 5000,
+                    "customer": 1,
+                    "is_deleted": false,
+                    "created_at": "2021-04-28 15:19:16",
+                    "updated_at": "2021-04-28 15:19:16"
+                }
+            },
+            {
+                "id": 7,
+                "account_balance": 5000,
+                "credit": null,
+                "debit": 2000,
+                "description": "Making a withdrawal",
+                "customer": 1,
+                "account": 1,
+                "is_deleted": false,
+                "created_at": "2021-04-29 18:24:11",
+                "updated_at": "2021-04-29 18:24:11",
+                "transaction_customer": {
+                    "id": 1,
+                    "business_name": "Chronos software solutions",
+                    "unique_id": "123456789",
+                    "unique_id_type": "bvn",
+                    "first_name": "John",
+                    "last_name": "Doe",
+                    "other_names": "Smith",
+                    "mother_maiden_name": "Jane",
+                    "gender": "male",
+                    "marital_status": "single",
+                    "date_of_birth": null,
+                    "street": "12 Olaniyi street ",
+                    "city": "Ikeja",
+                    "state": "Lagos",
+                    "country": "Nigeria",
+                    "email": "company@gmail.com",
+                    "contact_number": "08000000001",
+                    "occupation": "Software Developer",
+                    "office_street": "229 Herbert Macaulay ",
+                    "office_city": "Yaba",
+                    "office_state": "Lagos",
+                    "office_country": "Nigeria",
+                    "next_of_kin": null,
+                    "geo_cordinates": null,
+                    "is_deleted": false,
+                    "created_at": "2021-04-28 15:13:37",
+                    "updated_at": "2021-04-28 15:13:37"
+                },
+                "transaction_account": {
+                    "id": 1,
+                    "bank_name": "GT Bank",
+                    "account_number": "123456789",
+                    "account_type": "individual savings",
+                    "bvn": "123456789",
+                    "currency": "NGN",
+                    "denomination": 1000,
+                    "balance": 5000,
+                    "customer": 1,
+                    "is_deleted": false,
+                    "created_at": "2021-04-28 15:19:16",
+                    "updated_at": "2021-04-28 15:19:16"
+                }
+            }
+        ]
+    }
+}
+```
+This endpoint is used to fetch transactions for all customers of partners.
+
+### HTTP Request
+
+`GET /partner/customer-transaction/{partner_id}`
+
+
+### HEADERS
+|Content-Type|Authorization|
+|-----------|------------|
+|application/json|Bearer `{{TOKEN}}`|
+
+## Update partner app details
+```shell
+curl --location --request PATCH 'http://127.0.0.1:3333/partner/1' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao' \
+--data-raw '{
+    "name": "Flutterwave"
+}'
+```
+```python
+import requests
+import json
+
+url = "http://127.0.0.1:3333/partner/1"
+
+payload = json.dumps({
+  "name": "Flutterwave"
+})
+headers = {
+  'Content-Type': 'application/json',
+  'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao'
+}
+
+response = requests.request("PATCH", url, headers=headers, data=payload)
+
+print(response.text)
+
+```
+```javascript
+var axios = require('axios');
+var data = JSON.stringify({
+  "name": "Flutterwave"
+});
+
+var config = {
+  method: 'patch',
+  url: 'http://127.0.0.1:3333/partner/1',
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao'
+  },
+  data : data
+};
+
+axios(config)
+.then(function (response) {
+  console.log(JSON.stringify(response.data));
+})
+.catch(function (error) {
+  console.log(error);
+});
+
+```
+
+> Example Response
+
+```json
+{
+    "message": {
+        "success": "Partner updated successfully"
+    }
+}
+```
+This endpoint is used to update partner app details.
+
+### HTTP Request
+
+`PATCH /partner/{partner_id}`
+
+
+### HEADERS
+|Content-Type|Authorization|
+|-----------|------------|
+|application/json|Bearer `{{TOKEN}}`|
+
+
+## Drop partner app
+```shell
+curl --location --request DELETE 'http://127.0.0.1:3333/partner/1' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao'
+```
+```python
+import requests
+import json
+
+url = "http://127.0.0.1:3333/partner/1"
+
+payload={}
+headers = {
+  'Content-Type': 'application/json',
+  'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao'
+}
+
+response = requests.request("DELETE", url, headers=headers, data=payload)
+
+print(response.text)
+
+```
+```javascript
+var axios = require('axios');
+
+var config = {
+  method: 'delete',
+  url: 'http://127.0.0.1:3333/partner/1',
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao'
+  }
+};
+
+axios(config)
+.then(function (response) {
+  console.log(JSON.stringify(response.data));
+})
+.catch(function (error) {
+  console.log(error);
+});
+
+```
+
+> Example Response
+
+```json
+{
+    "message": {
+        "success": "Partner deleted successfully"
+    }
+}
+```
+This endpoint is used to drop partner app.
+
+### HTTP Request
+
+`DELETE /partner/{partner_id}`
+
+
+### HEADERS
+|Content-Type|Authorization|
+|-----------|------------|
+|application/json|Bearer `{{TOKEN}}`|
+
+## Fetch customer partners based on partner id
+```shell
+curl --location --request GET 'http://127.0.0.1:3333/partner/1/customers' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao'
+```
+```python
+import requests
+import json
+
+url = "http://127.0.0.1:3333/partner/1/customers"
+
+payload={}
+headers = {
+  'Content-Type': 'application/json',
+  'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao'
+}
+
+response = requests.request("GET", url, headers=headers, data=payload)
+
+print(response.text)
+
+```
+```javascript
+var axios = require('axios');
+
+var config = {
+  method: 'get',
+  url: 'http://127.0.0.1:3333/partner/1/customers',
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao'
+  }
+};
+
+axios(config)
+.then(function (response) {
+  console.log(JSON.stringify(response.data));
+})
+.catch(function (error) {
+  console.log(error);
+});
+
+```
+
+> Example Response
+
+```json
+{
+    "message": {
+        "success": "Customer Partners retrieved successfully"
+    },
+    "data": {
+        "customerPartners": [
+            {
+                "id": 1,
+                "customer": 1,
+                "partner": 1,
+                "is_deleted": false,
+                "created_at": "2021-04-28 11:22:07",
+                "updated_at": "2021-04-28 11:22:07",
+                "customer_partner_customers": {
+                    "id": 1,
+                    "business_name": "Chronos software solutions",
+                    "unique_id": "123456789",
+                    "unique_id_type": "bvn",
+                    "first_name": "John",
+                    "last_name": "Doe",
+                    "other_names": "Smith",
+                    "mother_maiden_name": "Jane",
+                    "gender": "male",
+                    "marital_status": "single",
+                    "date_of_birth": null,
+                    "street": "12 Olaniyi street ",
+                    "city": "Ikeja",
+                    "state": "Lagos",
+                    "country": "Nigeria",
+                    "email": "company@gmail.com",
+                    "contact_number": "08000000001",
+                    "occupation": "Software Developer",
+                    "office_street": "229 Herbert Macaulay ",
+                    "office_city": "Yaba",
+                    "office_state": "Lagos",
+                    "office_country": "Nigeria",
+                    "next_of_kin": null,
+                    "geo_cordinates": null,
+                    "is_deleted": false,
+                    "created_at": "2021-04-28 11:22:07",
+                    "updated_at": "2021-04-28 11:22:07"
+                },
+                "customer_partner_partners": null
+            }
+        ]
+    }
+}
+```
+This endpoint is used to fetch customer of partners.
+
+### HTTP Request
+
+`GET /partner/{partner_id}/customers`
+
+
+### HEADERS
+|Content-Type|Authorization|
+|-----------|------------|
+|application/json|Bearer `{{TOKEN}}`|

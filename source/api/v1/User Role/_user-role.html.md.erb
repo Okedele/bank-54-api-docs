@@ -1,0 +1,418 @@
+# User Role
+
+## Create user role
+```shell
+curl --location --request POST 'http://127.0.0.1:3333/user-role' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao' \
+--data-raw '{
+    "name": "admin",
+    "user": 1
+}'
+```
+```python
+import requests
+import json
+
+url = "http://127.0.0.1:3333/user-role"
+
+payload = json.dumps({
+  "name": "admin",
+  "user": 1
+})
+headers = {
+  'Content-Type': 'application/json',
+  'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao'
+}
+
+response = requests.request("POST", url, headers=headers, data=payload)
+
+print(response.text)
+```
+```javascript
+var axios = require('axios');
+var data = JSON.stringify({
+  "name": "admin",
+  "user": 1
+});
+
+var config = {
+  method: 'post',
+  url: 'http://127.0.0.1:3333/user-role',
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao'
+  },
+  data : data
+};
+
+axios(config)
+.then(function (response) {
+  console.log(JSON.stringify(response.data));
+})
+.catch(function (error) {
+  console.log(error);
+});
+
+```
+
+> Example Response
+
+```json
+{
+    "message": {
+        "success": "User role created successfully"
+    },
+    "data": {
+        "userRole": {
+            "name": "admin",
+            "user": 1,
+            "created_at": "2021-04-28 10:15:04",
+            "updated_at": "2021-04-28 10:15:04",
+            "id": 2
+        }
+    }
+}
+```
+This endpoint is used to create user roles.
+
+### HTTP Request
+
+`POST /user-role`
+
+
+### HEADERS
+|Content-Type|Authorization|
+|-----------|------------|
+|application/json|Bearer `{{TOKEN}}`|
+
+## Fetch all user roles
+```shell
+curl --location --request GET 'http://127.0.0.1:3333/user-role' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao'
+```
+```python
+import requests
+import json
+
+url = "http://127.0.0.1:3333/user-role"
+
+payload={}
+headers = {
+  'Content-Type': 'application/json',
+  'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao'
+}
+
+response = requests.request("GET", url, headers=headers, data=payload)
+
+print(response.text)
+
+```
+```javascript
+var axios = require('axios');
+
+var config = {
+  method: 'get',
+  url: 'http://127.0.0.1:3333/user-role',
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao'
+  }
+};
+
+axios(config)
+.then(function (response) {
+  console.log(JSON.stringify(response.data));
+})
+.catch(function (error) {
+  console.log(error);
+});
+
+```
+
+> Example Response
+
+```json
+{
+    "message": {
+        "success": "User roles retrieved successfully"
+    },
+    "data": {
+        "userRoles": [
+            {
+                "id": 1,
+                "name": "admin",
+                "user": 1,
+                "is_deleted": false,
+                "created_at": "2021-04-28 11:13:17",
+                "updated_at": "2021-04-28 11:13:17",
+                "user_role_user": {
+                    "id": 1,
+                    "username": "test123",
+                    "email": "test@gmail.co",
+                    "app_key": null,
+                    "is_deleted": false,
+                    "created_at": "2021-04-28 11:13:17",
+                    "updated_at": "2021-04-28 11:13:17"
+                }
+            },
+            {
+                "id": 2,
+                "name": "admin",
+                "user": 1,
+                "is_deleted": false,
+                "created_at": "2021-04-28 11:15:04",
+                "updated_at": "2021-04-28 11:15:04",
+                "user_role_user": {
+                    "id": 1,
+                    "username": "test123",
+                    "email": "test@gmail.co",
+                    "app_key": null,
+                    "is_deleted": false,
+                    "created_at": "2021-04-28 11:13:17",
+                    "updated_at": "2021-04-28 11:13:17"
+                }
+            }
+        ]
+    }
+}
+```
+This endpoint is used to fetch all user roles.
+
+### HTTP Request
+
+`GET /user-role`
+
+
+### HEADERS
+|Content-Type|Authorization|
+|-----------|------------|
+|application/json|Bearer `{{TOKEN}}`|
+
+## Fetch user role details
+```shell
+curl --location --request GET 'http://127.0.0.1:3333/user-role/1' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao'
+```
+```python
+import requests
+import json
+
+url = "http://127.0.0.1:3333/user-role/1"
+
+payload={}
+headers = {
+  'Content-Type': 'application/json',
+  'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao'
+}
+
+response = requests.request("GET", url, headers=headers, data=payload)
+
+print(response.text)
+
+```
+```javascript
+var axios = require('axios');
+
+var config = {
+  method: 'get',
+  url: 'http://127.0.0.1:3333/user-role/1',
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao'
+  }
+};
+
+axios(config)
+.then(function (response) {
+  console.log(JSON.stringify(response.data));
+})
+.catch(function (error) {
+  console.log(error);
+});
+
+```
+
+> Example Response
+
+```json
+{
+    "message": {
+        "success": "User role retrieved successfully"
+    },
+    "data": {
+        "userRole": {
+            "id": 1,
+            "name": "admin",
+            "user": 1,
+            "is_deleted": false,
+            "created_at": "2021-04-28 11:13:17",
+            "updated_at": "2021-04-28 11:13:17",
+            "user_role_user": {
+                "id": 1,
+                "username": "test123",
+                "email": "test@gmail.co",
+                "app_key": null,
+                "is_deleted": false,
+                "created_at": "2021-04-28 11:13:17",
+                "updated_at": "2021-04-28 11:13:17"
+            }
+        }
+    }
+}
+```
+This endpoint is used to fetch a specific user role.
+
+### HTTP Request
+
+`GET /user-role/{user_role_id}`
+
+
+### HEADERS
+|Content-Type|Authorization|
+|-----------|------------|
+|application/json|Bearer `{{TOKEN}}`|
+
+## Update user role details
+```shell
+curl --location --request PATCH 'http://127.0.0.1:3333/user-role/1' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao' \
+--data-raw '{
+    "name": "partner"
+}'
+```
+```python
+import requests
+import json
+
+url = "http://127.0.0.1:3333/user-role/1"
+
+payload = json.dumps({
+  "name": "partner"
+})
+headers = {
+  'Content-Type': 'application/json',
+  'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao'
+}
+
+response = requests.request("PATCH", url, headers=headers, data=payload)
+
+print(response.text)
+
+```
+```javascript
+var axios = require('axios');
+var data = JSON.stringify({
+  "name": "partner"
+});
+
+var config = {
+  method: 'patch',
+  url: 'http://127.0.0.1:3333/user-role/1',
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao'
+  },
+  data : data
+};
+
+axios(config)
+.then(function (response) {
+  console.log(JSON.stringify(response.data));
+})
+.catch(function (error) {
+  console.log(error);
+});
+
+```
+
+> Example Response
+
+```json
+{
+    "message": {
+        "success": "User role updated successfully"
+    }
+}
+```
+This endpoint is used to update a specific user role.
+
+### HTTP Request
+
+`PATCH /user-role/{user_role_id}`
+
+
+### HEADERS
+|Content-Type|Authorization|
+|-----------|------------|
+|application/json|Bearer `{{TOKEN}}`|
+
+
+## Drop user
+```shell
+curl --location --request DELETE 'http://127.0.0.1:3333/user-role/1' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao'
+```
+```python
+import requests
+import json
+
+url = "http://127.0.0.1:3333/user-role/1"
+
+payload={}
+headers = {
+  'Content-Type': 'application/json',
+  'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao'
+}
+
+response = requests.request("DELETE", url, headers=headers, data=payload)
+
+print(response.text)
+
+```
+```javascript
+var axios = require('axios');
+
+var config = {
+  method: 'delete',
+  url: 'http://127.0.0.1:3333/user-role/1',
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao'
+  }
+};
+
+axios(config)
+.then(function (response) {
+  console.log(JSON.stringify(response.data));
+})
+.catch(function (error) {
+  console.log(error);
+});
+
+```
+
+> Example Response
+
+```json
+{
+    "message": {
+        "success": "User role deleted successfully"
+    }
+}
+```
+This endpoint is used to drop a user role.
+
+### HTTP Request
+
+`DELETE /user-role/{user_role_id}`
+
+
+### HEADERS
+|Content-Type|Authorization|
+|-----------|------------|
+|application/json|Bearer `{{TOKEN}}`|

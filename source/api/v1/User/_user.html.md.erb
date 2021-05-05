@@ -1,0 +1,493 @@
+# User
+
+## Create user
+```shell
+curl --location --request POST 'http://127.0.0.1:3333/user' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao' \
+--data-raw '{
+    "username": "cars45",
+    "email": "cars45@gmail.co",
+    "password": "testing"
+}'
+```
+```python
+import requests
+import json
+
+url = "http://127.0.0.1:3333/user"
+
+payload = json.dumps({
+  "username": "cars45",
+  "email": "cars45@gmail.co",
+  "password": "testing"
+})
+headers = {
+  'Content-Type': 'application/json',
+  'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao'
+}
+
+response = requests.request("POST", url, headers=headers, data=payload)
+
+print(response.text)
+```
+```javascript
+var axios = require('axios');
+var data = JSON.stringify({
+  "username": "cars45",
+  "email": "cars45@gmail.co",
+  "password": "testing"
+});
+
+var config = {
+  method: 'post',
+  url: 'http://127.0.0.1:3333/user',
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao'
+  },
+  data : data
+};
+
+axios(config)
+.then(function (response) {
+  console.log(JSON.stringify(response.data));
+})
+.catch(function (error) {
+  console.log(error);
+});
+```
+
+> Example Response
+
+```json
+{
+    "message": {
+        "success": "User created successfully"
+    },
+    "data": {
+        "user": {
+            "username": "cars45",
+            "email": "cars45@gmail.co",
+            "created_at": "2021-04-28 10:08:51",
+            "updated_at": "2021-04-28 10:08:51",
+            "id": 2
+        }
+    }
+}
+```
+This endpoint is used to create users.
+
+### HTTP Request
+
+`POST /user`
+
+
+### HEADERS
+|Content-Type|Authorization|
+|-----------|------------|
+|application/json|Bearer `{{TOKEN}}`|
+
+## Fetch all users
+```shell
+curl --location --request GET 'http://127.0.0.1:3333/user' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao'
+```
+```python
+import requests
+import json
+
+url = "http://127.0.0.1:3333/user"
+
+payload={}
+headers = {
+  'Content-Type': 'application/json',
+  'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao'
+}
+
+response = requests.request("GET", url, headers=headers, data=payload)
+
+print(response.text)
+
+```
+```javascript
+var axios = require('axios');
+
+var config = {
+  method: 'get',
+  url: 'http://127.0.0.1:3333/user',
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao'
+  }
+};
+
+axios(config)
+.then(function (response) {
+  console.log(JSON.stringify(response.data));
+})
+.catch(function (error) {
+  console.log(error);
+});
+
+```
+
+> Example Response
+
+```json
+{
+    "message": {
+        "success": "Users retrieved successfully"
+    },
+    "data": {
+        "users": [
+            {
+                "id": 1,
+                "username": "test123",
+                "email": "test@gmail.co",
+                "app_key": null,
+                "is_deleted": false,
+                "created_at": "2021-04-28 11:02:57",
+                "updated_at": "2021-04-28 11:02:57",
+                "user_user_role": {
+                    "id": 1,
+                    "name": "admin",
+                    "user": 1,
+                    "is_deleted": false,
+                    "created_at": "2021-04-28 11:02:58",
+                    "updated_at": "2021-04-28 11:02:58"
+                },
+                "user_partner": null,
+                "user_financier": null
+            },
+            {
+                "id": 2,
+                "username": "cars45",
+                "email": "cars45@gmail.co",
+                "app_key": null,
+                "is_deleted": false,
+                "created_at": "2021-04-28 11:08:51",
+                "updated_at": "2021-04-28 11:08:51",
+                "user_user_role": null,
+                "user_partner": null,
+                "user_financier": null
+            }
+        ]
+    }
+}
+```
+This endpoint is used to fetch all users.
+
+### HTTP Request
+
+`GET /user`
+
+
+### HEADERS
+|Content-Type|Authorization|
+|-----------|------------|
+|application/json|Bearer `{{TOKEN}}`|
+
+## Fetch user details
+```shell
+curl --location --request GET 'http://127.0.0.1:3333/user/1' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao'
+```
+```python
+import requests
+import json
+
+url = "http://127.0.0.1:3333/user/1"
+
+payload={}
+headers = {
+  'Content-Type': 'application/json',
+  'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao'
+}
+
+response = requests.request("GET", url, headers=headers, data=payload)
+
+print(response.text)
+
+```
+```javascript
+var axios = require('axios');
+
+var config = {
+  method: 'get',
+  url: 'http://127.0.0.1:3333/user/1',
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao'
+  }
+};
+
+axios(config)
+.then(function (response) {
+  console.log(JSON.stringify(response.data));
+})
+.catch(function (error) {
+  console.log(error);
+});
+
+```
+
+> Example Response
+
+```json
+{
+    "message": {
+        "success": "User retrieved successfully"
+    },
+    "data": {
+        "user": {
+            "id": 1,
+            "username": "test123",
+            "email": "test@gmail.co",
+            "app_key": null,
+            "is_deleted": false,
+            "created_at": "2021-04-28 11:02:57",
+            "updated_at": "2021-04-28 11:02:57",
+            "user_user_role": {
+                "id": 1,
+                "name": "admin",
+                "user": 1,
+                "is_deleted": false,
+                "created_at": "2021-04-28 11:02:58",
+                "updated_at": "2021-04-28 11:02:58"
+            },
+            "user_partner": null,
+            "user_financier": null
+        }
+    }
+}
+```
+This endpoint is used to fetch a specific user.
+
+### HTTP Request
+
+`GET /user/{user_id}`
+
+
+### HEADERS
+|Content-Type|Authorization|
+|-----------|------------|
+|application/json|Bearer `{{TOKEN}}`|
+
+## Update user details
+```shell
+curl --location --request PATCH 'http://127.0.0.1:3333/user/1' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao' \
+--data-raw '{
+    "username": "cars-45"
+}'
+```
+```python
+import requests
+import json
+
+url = "http://127.0.0.1:3333/user/1"
+
+payload = json.dumps({
+  "username": "cars-45"
+})
+headers = {
+  'Content-Type': 'application/json',
+  'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao'
+}
+
+response = requests.request("PATCH", url, headers=headers, data=payload)
+
+print(response.text)
+
+```
+```javascript
+var axios = require('axios');
+var data = JSON.stringify({
+  "username": "cars-45"
+});
+
+var config = {
+  method: 'patch',
+  url: 'http://127.0.0.1:3333/user/1',
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao'
+  },
+  data : data
+};
+
+axios(config)
+.then(function (response) {
+  console.log(JSON.stringify(response.data));
+})
+.catch(function (error) {
+  console.log(error);
+});
+
+```
+
+> Example Response
+
+```json
+{
+    "message": {
+        "success": "User updated successfully"
+    }
+}
+```
+This endpoint is used to update a specific user details.
+
+### HTTP Request
+
+`PATCH /user/{user_id}`
+
+
+### HEADERS
+|Content-Type|Authorization|
+|-----------|------------|
+|application/json|Bearer `{{TOKEN}}`|
+
+## Change password
+```shell
+curl --location --request PATCH 'http://127.0.0.1:3333/user/update-password/1' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao' \
+--data-raw '{
+    "new_password": "test"
+}'
+```
+```python
+import requests
+import json
+
+url = "http://127.0.0.1:3333/user/update-password/1"
+
+payload = json.dumps({
+  "new_password": "test"
+})
+headers = {
+  'Content-Type': 'application/json',
+  'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao'
+}
+
+response = requests.request("PATCH", url, headers=headers, data=payload)
+
+print(response.text)
+
+```
+```javascript
+var axios = require('axios');
+var data = JSON.stringify({
+  "new_password": "test"
+});
+
+var config = {
+  method: 'patch',
+  url: 'http://127.0.0.1:3333/user/update-password/1',
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao'
+  },
+  data : data
+};
+
+axios(config)
+.then(function (response) {
+  console.log(JSON.stringify(response.data));
+})
+.catch(function (error) {
+  console.log(error);
+});
+
+```
+
+> Example Response
+
+```json
+{
+    "message": {
+        "success": "User password updated successfully"
+    }
+}
+```
+This endpoint is used to update a user password.
+
+### HTTP Request
+
+`PATCH /user/update-password/{user_id}`
+
+
+### HEADERS
+|Content-Type|Authorization|
+|-----------|------------|
+|application/json|Bearer `{{TOKEN}}`|
+
+## Drop user
+```shell
+curl --location --request DELETE 'http://127.0.0.1:3333/user/1' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao'
+```
+```python
+import requests
+import json
+
+url = "http://127.0.0.1:3333/user/1"
+
+payload={}
+headers = {
+  'Content-Type': 'application/json',
+  'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao'
+}
+
+response = requests.request("DELETE", url, headers=headers, data=payload)
+
+print(response.text)
+
+```
+```javascript
+var axios = require('axios');
+
+var config = {
+  method: 'delete',
+  url: 'http://127.0.0.1:3333/user/1',
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao'
+  }
+};
+
+axios(config)
+.then(function (response) {
+  console.log(JSON.stringify(response.data));
+})
+.catch(function (error) {
+  console.log(error);
+});
+
+```
+
+> Example Response
+
+```json
+{
+    "message": {
+        "success": "User deleted successfully"
+    }
+}
+```
+This endpoint is used to drop a user.
+
+### HTTP Request
+
+`DELETE /user/{user_id}`
+
+
+### HEADERS
+|Content-Type|Authorization|
+|-----------|------------|
+|application/json|Bearer `{{TOKEN}}`|

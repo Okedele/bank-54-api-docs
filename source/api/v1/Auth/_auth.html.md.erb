@@ -1,0 +1,381 @@
+# Auth
+
+## Sign up
+```shell
+curl --location --request POST 'http://127.0.0.1:3333/sign-up' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "username": "test123",
+    "email": "test@gmail.co",
+    "password": "testing",
+    "role": "admin"
+}'
+```
+```python
+import requests
+import json
+
+url = "http://127.0.0.1:3333/sign-up"
+
+payload = json.dumps({
+  "username": "test123",
+  "email": "test@gmail.co",
+  "password": "testing",
+  "role": "admin"
+})
+headers = {
+  'Content-Type': 'application/json'
+}
+
+response = requests.request("POST", url, headers=headers, data=payload)
+
+print(response.text)
+```
+```javascript
+var axios = require('axios');
+var data = JSON.stringify({
+  "username": "test123",
+  "email": "test@gmail.co",
+  "password": "testing",
+  "role": "admin"
+});
+
+var config = {
+  method: 'post',
+  url: 'http://127.0.0.1:3333/sign-up',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  data : data
+};
+
+axios(config)
+.then(function (response) {
+  console.log(JSON.stringify(response.data));
+})
+.catch(function (error) {
+  console.log(error);
+});
+```
+
+> Example Response
+
+```json
+{
+    "status": "success",
+    "message": "Signup successful",
+    "data": {
+        "user": {
+            "email": "test@gmail.co",
+            "username": "test123",
+            "created_at": "2021-04-28 10:02:57",
+            "updated_at": "2021-04-28 10:02:57",
+            "id": 1
+        },
+        "userRole": {
+            "user": 1,
+            "name": "admin",
+            "created_at": "2021-04-28 10:02:58",
+            "updated_at": "2021-04-28 10:02:58",
+            "id": 1
+        },
+        "tokenData": {
+            "type": "bearer",
+            "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMDU3OH0.8Uu8Ogt3Y-16bDDeQW0doklQ5mpd2SvEPDsm7vNskU4",
+            "refreshToken": "9d9b82545e3d70af75b8590c1a61fd7fycGrMBTJ92vGS/8SJumreT3T5z3g7zzmStgSVf8OuQ6SI4QptyDG8cR8PMz4+J9F"
+        }
+    }
+}
+```
+This endpoint is used to sign up users.
+
+### HTTP Request
+
+`POST /sign-up`
+
+
+### HEADERS
+|Content-Type|
+|-----------|
+|application/json|
+
+##  Sign up partner
+```shell
+curl --location --request POST 'http://127.0.0.1:3333/sign-up' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "username": "test123",
+    "password": "testing",
+    "role": "partner",
+    "name": "Paystack",
+    "street": "Olaniyi",
+    "city": "Ikeja",
+    "state": "Lagos",
+    "country": "Nigeria",
+    "email": "company@gmail.com",
+    "contact_number": "08000000001",
+    "business_registration": "a1b2c3"
+}'
+```
+```python
+import requests
+import json
+
+url = "http://127.0.0.1:3333/sign-up"
+
+payload = json.dumps({
+  "username": "test123",
+  "password": "testing",
+  "role": "partner",
+  "name": "Paystack",
+  "street": "Olaniyi",
+  "city": "Ikeja",
+  "state": "Lagos",
+  "country": "Nigeria",
+  "email": "company@gmail.com",
+  "contact_number": "08000000001",
+  "business_registration": "a1b2c3"
+})
+headers = {
+  'Content-Type': 'application/json'
+}
+
+response = requests.request("POST", url, headers=headers, data=payload)
+
+print(response.text)
+
+```
+```javascript
+var axios = require('axios');
+var data = JSON.stringify({
+  "username": "test123",
+  "password": "testing",
+  "role": "partner",
+  "name": "Paystack",
+  "street": "Olaniyi",
+  "city": "Ikeja",
+  "state": "Lagos",
+  "country": "Nigeria",
+  "email": "company@gmail.com",
+  "contact_number": "08000000001",
+  "business_registration": "a1b2c3"
+});
+
+var config = {
+  method: 'post',
+  url: 'http://127.0.0.1:3333/sign-up',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  data : data
+};
+
+axios(config)
+.then(function (response) {
+  console.log(JSON.stringify(response.data));
+})
+.catch(function (error) {
+  console.log(error);
+});
+```
+
+> Example Response
+
+```json
+{
+    "status": "success",
+    "message": "Signup successful",
+    "data": {
+        "user": {
+            "email": "test@gmail.co",
+            "username": "test123",
+            "created_at": "2021-04-28 10:02:57",
+            "updated_at": "2021-04-28 10:02:57",
+            "id": 1
+        },
+        "userRole": {
+            "user": 1,
+            "name": "admin",
+            "created_at": "2021-04-28 10:02:58",
+            "updated_at": "2021-04-28 10:02:58",
+            "id": 1
+        },
+        "tokenData": {
+            "type": "bearer",
+            "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMDU3OH0.8Uu8Ogt3Y-16bDDeQW0doklQ5mpd2SvEPDsm7vNskU4",
+            "refreshToken": "9d9b82545e3d70af75b8590c1a61fd7fycGrMBTJ92vGS/8SJumreT3T5z3g7zzmStgSVf8OuQ6SI4QptyDG8cR8PMz4+J9F"
+        }
+    }
+}
+}
+```
+This endpoint is used to sign up partner apps.
+
+### HTTP Request
+
+`POST /sign-up`
+
+### HEADERS
+|Content-Type|
+|-----------|
+|application/json|
+
+## Login
+```shell
+curl --location --request POST 'http://127.0.0.1:3333/log-in' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "email": "test@gmail.co",
+    "password": "testing"
+}'
+```
+```python
+import requests
+import json
+
+url = "http://127.0.0.1:3333/log-in"
+
+payload = json.dumps({
+  "email": "test@gmail.co",
+  "password": "testing"
+})
+headers = {
+  'Content-Type': 'application/json'
+}
+
+response = requests.request("POST", url, headers=headers, data=payload)
+
+print(response.text)
+```
+```javascript
+var axios = require('axios');
+var data = JSON.stringify({
+  "email": "test@gmail.co",
+  "password": "testing"
+});
+
+var config = {
+  method: 'post',
+  url: 'http://127.0.0.1:3333/log-in',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  data : data
+};
+
+axios(config)
+.then(function (response) {
+  console.log(JSON.stringify(response.data));
+})
+.catch(function (error) {
+  console.log(error);
+});
+
+```
+
+> Example Response
+
+```json
+{
+    "status": "success",
+    "message": "Login successful",
+    "data": {
+        "user": {
+            "id": 1,
+            "username": "test123",
+            "email": "test@gmail.co",
+            "app_key": null,
+            "is_deleted": false,
+            "created_at": "2021-04-28 11:02:57",
+            "updated_at": "2021-04-28 11:02:57"
+        },
+        "tokenData": {
+            "type": "bearer",
+            "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMDYwOH0.NArA_JdH3f7UNDKAOv8gI9y0RUc1iIjfQRTZh6IdJP4",
+            "refreshToken": "9aeae84fd2fda9fb4a117bdd2a4eb5e4dtrQVupDmR7D4tNNRJdNuMDWujzms5rZIpmeOsRLu5H0CQdzeOMFuQSlvgtmVRBI"
+        }
+    }
+}
+```
+This endpoint is used for login.
+
+### HTTP Request
+
+`POST /log-in`
+
+### HEADERS
+|Content-Type|
+|-----------|
+|application/json|
+
+## Log out
+```shell
+curl --location --request POST 'http://127.0.0.1:3333/log-out' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao' \
+--data-raw '{
+    "refreshToken": "d967e7e9eb3aaf7c6978c4d4ac5ace18QoakWFyTf917dTWaeSd8tK75fI9QObnc9b7uaM4Lqy8uHRe5neCekuIO7I5QmDrt"
+}'
+```
+```python
+import requests
+import json
+
+url = "http://127.0.0.1:3333/log-out"
+
+payload = json.dumps({
+  "refreshToken": "d967e7e9eb3aaf7c6978c4d4ac5ace18QoakWFyTf917dTWaeSd8tK75fI9QObnc9b7uaM4Lqy8uHRe5neCekuIO7I5QmDrt"
+})
+headers = {
+  'Content-Type': 'application/json',
+  'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao'
+}
+
+response = requests.request("POST", url, headers=headers, data=payload)
+
+print(response.text)
+
+```
+```javascript
+var axios = require('axios');
+var data = JSON.stringify({
+  "refreshToken": "d967e7e9eb3aaf7c6978c4d4ac5ace18QoakWFyTf917dTWaeSd8tK75fI9QObnc9b7uaM4Lqy8uHRe5neCekuIO7I5QmDrt"
+});
+
+var config = {
+  method: 'post',
+  url: 'http://127.0.0.1:3333/log-out',
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao'
+  },
+  data : data
+};
+
+axios(config)
+.then(function (response) {
+  console.log(JSON.stringify(response.data));
+})
+.catch(function (error) {
+  console.log(error);
+});
+```
+
+> Example Response
+
+```json
+{
+    "status": "success",
+    "message": "Logout successful"
+}
+```
+This endpoint is used to logout.
+
+### HTTP Request
+
+`POST /log-out`
+
+### HEADERS
+|Content-Type|Authorization|
+|-----------|------------|
+|application/json|Bearer `{{TOKEN}}`|

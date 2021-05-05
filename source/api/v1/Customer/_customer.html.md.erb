@@ -1,0 +1,623 @@
+# Customer
+
+## Register customer
+```shell
+curl --location --request POST 'http://127.0.0.1:3333/customer' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao' \
+--data-raw '{
+    "business_name": "Chronos software solutions",
+    "unique_id_type": "bvn",
+    "unique_id": "123456789",
+    "first_name": "John",
+    "last_name": "Doe",
+    "other_names": "Smith",
+    "mother_maiden_name": "Jane",
+    "gender": "male",
+    "marital_status": "single",
+    "street": "12 Olaniyi street ",
+    "city": "Ikeja",
+    "state": "Lagos",
+    "country": "Nigeria",
+    "email": "company@gmail.com",
+    "contact_number": "08000000001",
+    "occupation": "Software Developer",
+    "office_street": "229 Herbert Macaulay ",
+    "office_city": "Yaba",
+    "office_state": "Lagos",
+    "office_country": "Nigeria",
+    "partner": 1
+}'
+```
+```python
+import requests
+import json
+
+url = "http://127.0.0.1:3333/customer"
+
+payload = json.dumps({
+  "business_name": "Chronos software solutions",
+  "unique_id_type": "bvn",
+  "unique_id": "123456789",
+  "first_name": "John",
+  "last_name": "Doe",
+  "other_names": "Smith",
+  "mother_maiden_name": "Jane",
+  "gender": "male",
+  "marital_status": "single",
+  "street": "12 Olaniyi street ",
+  "city": "Ikeja",
+  "state": "Lagos",
+  "country": "Nigeria",
+  "email": "company@gmail.com",
+  "contact_number": "08000000001",
+  "occupation": "Software Developer",
+  "office_street": "229 Herbert Macaulay ",
+  "office_city": "Yaba",
+  "office_state": "Lagos",
+  "office_country": "Nigeria",
+  "partner": 1
+})
+headers = {
+  'Content-Type': 'application/json',
+  'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao'
+}
+
+response = requests.request("POST", url, headers=headers, data=payload)
+
+print(response.text)
+
+```
+```javascript
+var axios = require('axios');
+var data = JSON.stringify({
+  "business_name": "Chronos software solutions",
+  "unique_id_type": "bvn",
+  "unique_id": "123456789",
+  "first_name": "John",
+  "last_name": "Doe",
+  "other_names": "Smith",
+  "mother_maiden_name": "Jane",
+  "gender": "male",
+  "marital_status": "single",
+  "street": "12 Olaniyi street ",
+  "city": "Ikeja",
+  "state": "Lagos",
+  "country": "Nigeria",
+  "email": "company@gmail.com",
+  "contact_number": "08000000001",
+  "occupation": "Software Developer",
+  "office_street": "229 Herbert Macaulay ",
+  "office_city": "Yaba",
+  "office_state": "Lagos",
+  "office_country": "Nigeria",
+  "partner": 1
+});
+
+var config = {
+  method: 'post',
+  url: 'http://127.0.0.1:3333/customer',
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao'
+  },
+  data : data
+};
+
+axios(config)
+.then(function (response) {
+  console.log(JSON.stringify(response.data));
+})
+.catch(function (error) {
+  console.log(error);
+});
+
+```
+
+> Example Response
+
+```json
+{
+    "message": {
+        "success": "Customer created successfully"
+    },
+    "data": {
+        "customer": {
+            "business_name": "Chronos software solutions",
+            "unique_id": "123456789",
+            "unique_id_type": "bvn",
+            "first_name": "John",
+            "last_name": "Doe",
+            "other_names": "Smith",
+            "mother_maiden_name": "Jane",
+            "gender": "male",
+            "marital_status": "single",
+            "street": "12 Olaniyi street ",
+            "city": "Ikeja",
+            "state": "Lagos",
+            "country": "Nigeria",
+            "email": "company@gmail.com",
+            "contact_number": "08000000001",
+            "occupation": "Software Developer",
+            "office_street": "229 Herbert Macaulay ",
+            "office_city": "Yaba",
+            "office_state": "Lagos",
+            "office_country": "Nigeria",
+            "created_at": "2021-04-28 10:22:07",
+            "updated_at": "2021-04-28 10:22:07",
+            "id": 1
+        },
+        "customerPartner": {
+            "customer": 1,
+            "partner": 1,
+            "created_at": "2021-04-28 10:22:07",
+            "updated_at": "2021-04-28 10:22:07",
+            "id": 1
+        }
+    }
+}
+```
+This endpoint is used to register customers.
+
+### HTTP Request
+
+`POST /customer`
+
+
+### HEADERS
+|Content-Type|Authorization|
+|-----------|------------|
+|application/json|Bearer `{{TOKEN}}`|
+
+## Fetch customers
+```shell
+curl --location --request GET 'http://127.0.0.1:3333/customer' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao'
+```
+```python
+import requests
+import json
+
+url = "http://127.0.0.1:3333/customer"
+
+payload={}
+headers = {
+  'Content-Type': 'application/json',
+  'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao'
+}
+
+response = requests.request("GET", url, headers=headers, data=payload)
+
+print(response.text)
+
+```
+```javascript
+var axios = require('axios');
+
+var config = {
+  method: 'get',
+  url: 'http://127.0.0.1:3333/customer',
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao'
+  }
+};
+
+axios(config)
+.then(function (response) {
+  console.log(JSON.stringify(response.data));
+})
+.catch(function (error) {
+  console.log(error);
+});
+
+```
+
+> Example Response
+
+```json
+{
+    "message": {
+        "success": "Customers retrieved successfully"
+    },
+    "data": {
+        "customers": [
+            {
+                "id": 1,
+                "business_name": "Chronos software solutions",
+                "unique_id": "123456789",
+                "unique_id_type": "bvn",
+                "first_name": "John",
+                "last_name": "Doe",
+                "other_names": "Smith",
+                "mother_maiden_name": "Jane",
+                "gender": "male",
+                "marital_status": "single",
+                "date_of_birth": null,
+                "street": "12 Olaniyi street ",
+                "city": "Ikeja",
+                "state": "Lagos",
+                "country": "Nigeria",
+                "email": "company@gmail.com",
+                "contact_number": "08000000001",
+                "occupation": "Software Developer",
+                "office_street": "229 Herbert Macaulay ",
+                "office_city": "Yaba",
+                "office_state": "Lagos",
+                "office_country": "Nigeria",
+                "next_of_kin": null,
+                "geo_cordinates": null,
+                "is_deleted": false,
+                "created_at": "2021-04-28 11:22:07",
+                "updated_at": "2021-04-28 11:22:07"
+            }
+        ]
+    }
+}
+```
+This endpoint is used to fetch all customers.
+
+### HTTP Request
+
+`GET /customer`
+
+
+### HEADERS
+|Content-Type|Authorization|
+|-----------|------------|
+|application/json|Bearer `{{TOKEN}}`|
+
+## Fetch customer details
+```shell
+curl --location --request GET 'http://127.0.0.1:3333/customer/1' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao'
+```
+```python
+import requests
+import json
+
+url = "http://127.0.0.1:3333/customer/1"
+
+payload={}
+headers = {
+  'Content-Type': 'application/json',
+  'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao'
+}
+
+response = requests.request("GET", url, headers=headers, data=payload)
+
+print(response.text)
+
+```
+```javascript
+var axios = require('axios');
+
+var config = {
+  method: 'get',
+  url: 'http://127.0.0.1:3333/customer/1',
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao'
+  }
+};
+
+axios(config)
+.then(function (response) {
+  console.log(JSON.stringify(response.data));
+})
+.catch(function (error) {
+  console.log(error);
+});
+
+```
+
+> Example Response
+
+```json
+{
+    "message": {
+        "success": "Customer retrieved successfully"
+    },
+    "data": {
+        "customer": {
+            "id": 1,
+            "business_name": "Chronos software solutions",
+            "unique_id": "123456789",
+            "unique_id_type": "bvn",
+            "first_name": "John",
+            "last_name": "Doe",
+            "other_names": "Smith",
+            "mother_maiden_name": "Jane",
+            "gender": "male",
+            "marital_status": "single",
+            "date_of_birth": null,
+            "street": "12 Olaniyi street ",
+            "city": "Ikeja",
+            "state": "Lagos",
+            "country": "Nigeria",
+            "email": "company@gmail.com",
+            "contact_number": "08000000001",
+            "occupation": "Software Developer",
+            "office_street": "229 Herbert Macaulay ",
+            "office_city": "Yaba",
+            "office_state": "Lagos",
+            "office_country": "Nigeria",
+            "next_of_kin": null,
+            "geo_cordinates": null,
+            "is_deleted": false,
+            "created_at": "2021-04-28 11:22:07",
+            "updated_at": "2021-04-28 11:22:07"
+        }
+    }
+}
+```
+This endpoint is used to fetch customer details.
+
+### HTTP Request
+
+`GET /customer/{customer_id}`
+
+
+### HEADERS
+|Content-Type|Authorization|
+|-----------|------------|
+|application/json|Bearer `{{TOKEN}}`|
+
+## Fetch all transactions for customer
+```shell
+curl --location --request GET 'http://127.0.0.1:3333/customer/transactions/1' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao'
+```
+```python
+import requests
+import json
+
+url = "http://127.0.0.1:3333/customer/transactions/1"
+
+payload={}
+headers = {
+  'Content-Type': 'application/json',
+  'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao'
+}
+
+response = requests.request("GET", url, headers=headers, data=payload)
+
+print(response.text)
+
+```
+```javascript
+var axios = require('axios');
+
+var config = {
+  method: 'get',
+  url: 'http://127.0.0.1:3333/customer/transactions/1',
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao'
+  }
+};
+
+axios(config)
+.then(function (response) {
+  console.log(JSON.stringify(response.data));
+})
+.catch(function (error) {
+  console.log(error);
+});
+
+```
+
+> Example Response
+
+```json
+{
+    "message": {
+        "success": "Transactions retrieved successfully"
+    },
+    "data": {
+        "transactions": [
+            {
+                "id": 1,
+                "account_balance": 5000,
+                "credit": 100,
+                "debit": null,
+                "description": "A test transaction",
+                "customer": 1,
+                "account": 1,
+                "is_deleted": false,
+                "created_at": "2021-04-28 15:12:07",
+                "updated_at": "2021-04-28 15:12:07"
+            },
+            {
+                "id": 3,
+                "account_balance": 5000,
+                "credit": 110,
+                "debit": null,
+                "description": "2nd test",
+                "customer": 1,
+                "account": 1,
+                "is_deleted": false,
+                "created_at": "2021-04-28 15:12:07",
+                "updated_at": "2021-04-28 15:12:07"
+            },
+            {
+                "id": 6,
+                "account_balance": 7000,
+                "credit": 2000,
+                "debit": null,
+                "description": "Making a deposit",
+                "customer": 1,
+                "account": 1,
+                "is_deleted": false,
+                "created_at": "2021-04-29 18:20:51",
+                "updated_at": "2021-04-29 18:20:51"
+            },
+            {
+                "id": 7,
+                "account_balance": 5000,
+                "credit": null,
+                "debit": 2000,
+                "description": "Making a withdrawal",
+                "customer": 1,
+                "account": 1,
+                "is_deleted": false,
+                "created_at": "2021-04-29 18:24:11",
+                "updated_at": "2021-04-29 18:24:11"
+            }
+        ]
+    }
+}
+```
+This endpoint is used to fetch all transactions for customer.
+
+### HTTP Request
+
+`GET /customer/transactions/{customer_id}`
+
+
+### HEADERS
+|Content-Type|Authorization|
+|-----------|------------|
+|application/json|Bearer `{{TOKEN}}`|
+
+## Update customer details
+```shell
+curl --location --request PATCH 'http://127.0.0.1:3333/customer/1' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "business_name": "Fieldinsight"
+}'
+```
+```python
+import requests
+import json
+
+url = "http://127.0.0.1:3333/customer/1"
+
+payload = json.dumps({
+  "business_name": "Fieldinsight"
+})
+headers = {
+  'Content-Type': 'application/json'
+}
+
+response = requests.request("PATCH", url, headers=headers, data=payload)
+
+print(response.text)
+
+```
+```javascript
+var axios = require('axios');
+var data = JSON.stringify({
+  "business_name": "Fieldinsight"
+});
+
+var config = {
+  method: 'patch',
+  url: 'http://127.0.0.1:3333/customer/1',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  data : data
+};
+
+axios(config)
+.then(function (response) {
+  console.log(JSON.stringify(response.data));
+})
+.catch(function (error) {
+  console.log(error);
+});
+
+```
+
+> Example Response
+
+```json
+{
+    "message": {
+        "success": "Customer updated successfully"
+    }
+}
+```
+This endpoint is used to update customer details.
+
+### HTTP Request
+
+`PATCH /customer/{customer_id}`
+
+
+### HEADERS
+|Content-Type|Authorization|
+|-----------|------------|
+|application/json|Bearer `{{TOKEN}}`|
+
+
+## Drop customer
+```shell
+curl --location --request DELETE 'http://127.0.0.1:3333/customer/1' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao'
+```
+```python
+import requests
+import json
+
+url = "http://127.0.0.1:3333/customer/1"
+
+payload={}
+headers = {
+  'Content-Type': 'application/json',
+  'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao'
+}
+
+response = requests.request("DELETE", url, headers=headers, data=payload)
+
+print(response.text)
+
+```
+```javascript
+var axios = require('axios');
+
+var config = {
+  method: 'delete',
+  url: 'http://127.0.0.1:3333/customer/1',
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao'
+  }
+};
+
+axios(config)
+.then(function (response) {
+  console.log(JSON.stringify(response.data));
+})
+.catch(function (error) {
+  console.log(error);
+});
+
+```
+
+> Example Response
+
+```json
+{
+    "message": {
+        "success": "Customer deleted successfully"
+    }
+}
+```
+This endpoint is used to drop a user role.
+
+### HTTP Request
+
+`DELETE /customer/{customer_id}`
+
+
+### HEADERS
+|Content-Type|Authorization|
+|-----------|------------|
+|application/json|Bearer `{{TOKEN}}`|
