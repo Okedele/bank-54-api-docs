@@ -1,0 +1,668 @@
+# Transaction
+
+## Create transaction
+```shell
+curl --location --request POST 'http://127.0.0.1:3333/transaction' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao' \
+--data-raw '{
+    "account_balance": 1000,
+    "credit": 100,
+    "customer": 1,
+    "account": 1,
+    "description": "Creating a transaction"
+}'
+```
+```python
+import requests
+import json
+
+url = "http://127.0.0.1:3333/transaction"
+
+payload = json.dumps({
+  "account_balance": 1000,
+  "credit": 100,
+  "customer": 1,
+  "account": 1,
+  "description": "Creating a transaction"
+})
+headers = {
+  'Content-Type': 'application/json',
+  'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao'
+}
+
+response = requests.request("POST", url, headers=headers, data=payload)
+
+print(response.text)
+
+```
+```javascript
+var axios = require('axios');
+var data = JSON.stringify({
+  "account_balance": 1000,
+  "credit": 100,
+  "customer": 1,
+  "account": 1,
+  "description": "Creating a transaction"
+});
+
+var config = {
+  method: 'post',
+  url: 'http://127.0.0.1:3333/transaction',
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao'
+  },
+  data : data
+};
+
+axios(config)
+.then(function (response) {
+  console.log(JSON.stringify(response.data));
+})
+.catch(function (error) {
+  console.log(error);
+});
+
+```
+
+> Example Response
+
+```json
+{
+    "message": {
+        "success": "Transaction created successfully"
+    },
+    "data": {
+        "transaction": {
+            "account_balance": 1000,
+            "credit": 100,
+            "description": "Creating a transaction",
+            "customer": 1,
+            "account": 1,
+            "created_at": "2021-05-05 16:11:09",
+            "updated_at": "2021-05-05 16:11:09",
+            "id": 10
+        }
+    }
+}
+```
+This endpoint is used to create transactions.
+
+### HTTP Request
+
+`POST /transaction`
+
+
+### HEADERS
+|Content-Type|Authorization|
+|-----------|------------|
+|application/json|Bearer `{{TOKEN}}`|
+
+## Fetch transactions
+```shell
+curl --location --request GET 'http://127.0.0.1:3333/transaction' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao'
+```
+```python
+import requests
+import json
+
+url = "http://127.0.0.1:3333/transaction"
+
+payload={}
+headers = {
+  'Content-Type': 'application/json',
+  'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao'
+}
+
+response = requests.request("GET", url, headers=headers, data=payload)
+
+print(response.text)
+
+```
+```javascript
+var axios = require('axios');
+
+var config = {
+  method: 'get',
+  url: 'http://127.0.0.1:3333/transaction',
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao'
+  }
+};
+
+axios(config)
+.then(function (response) {
+  console.log(JSON.stringify(response.data));
+})
+.catch(function (error) {
+  console.log(error);
+});
+
+```
+
+> Example Response
+
+```json
+{
+    "message": {
+        "success": "Transactions retrieved successfully"
+    },
+    "data": {
+        "transactions": [
+            {
+                "id": 1,
+                "account_balance": 5000,
+                "credit": 100,
+                "debit": null,
+                "description": "A test transaction",
+                "customer": 1,
+                "account": 1,
+                "is_deleted": false,
+                "created_at": "2021-04-28 15:12:07",
+                "updated_at": "2021-04-28 15:12:07"
+            },
+            {
+                "id": 2,
+                "account_balance": 5000,
+                "credit": null,
+                "debit": 50,
+                "description": "Newr\n",
+                "customer": 5,
+                "account": 2,
+                "is_deleted": false,
+                "created_at": "2021-04-28 15:12:07",
+                "updated_at": "2021-04-28 15:12:07"
+            },
+            {
+                "id": 3,
+                "account_balance": 5000,
+                "credit": 110,
+                "debit": null,
+                "description": "2nd test",
+                "customer": 1,
+                "account": 1,
+                "is_deleted": false,
+                "created_at": "2021-04-28 15:12:07",
+                "updated_at": "2021-04-28 15:12:07"
+            },
+            {
+                "id": 6,
+                "account_balance": 7000,
+                "credit": 2000,
+                "debit": null,
+                "description": "Making a deposit",
+                "customer": 1,
+                "account": 1,
+                "is_deleted": false,
+                "created_at": "2021-04-29 18:20:51",
+                "updated_at": "2021-04-29 18:20:51"
+            },
+            {
+                "id": 7,
+                "account_balance": 5000,
+                "credit": null,
+                "debit": 2000,
+                "description": "Making a withdrawal",
+                "customer": 1,
+                "account": 1,
+                "is_deleted": false,
+                "created_at": "2021-04-29 18:24:11",
+                "updated_at": "2021-04-29 18:24:11"
+            },
+            {
+                "id": 8,
+                "account_balance": 0,
+                "credit": null,
+                "debit": 5000,
+                "description": "Making a withdrawal",
+                "customer": 5,
+                "account": 2,
+                "is_deleted": false,
+                "created_at": "2021-04-29 18:28:00",
+                "updated_at": "2021-04-29 18:28:00"
+            },
+            {
+                "id": 10,
+                "account_balance": 1000,
+                "credit": 100,
+                "debit": null,
+                "description": "Creating a transaction",
+                "customer": 1,
+                "account": 1,
+                "is_deleted": false,
+                "created_at": "2021-05-05 17:11:09",
+                "updated_at": "2021-05-05 17:11:09"
+            }
+        ]
+    }
+}
+```
+This endpoint is used to fetch transactions.
+
+### HTTP Request
+
+`GET /transaction`
+
+
+### HEADERS
+|Content-Type|Authorization|
+|-----------|------------|
+|application/json|Bearer `{{TOKEN}}`|
+
+## Fetch transaction details
+```shell
+curl --location --request GET 'http://127.0.0.1:3333/transaction/1' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao'
+```
+```python
+import requests
+import json
+
+url = "http://127.0.0.1:3333/transaction/1"
+
+payload={}
+headers = {
+  'Content-Type': 'application/json',
+  'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao'
+}
+
+response = requests.request("GET", url, headers=headers, data=payload)
+
+print(response.text)
+
+```
+```javascript
+var axios = require('axios');
+
+var config = {
+  method: 'get',
+  url: 'http://127.0.0.1:3333/transaction/1',
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao'
+  }
+};
+
+axios(config)
+.then(function (response) {
+  console.log(JSON.stringify(response.data));
+})
+.catch(function (error) {
+  console.log(error);
+});
+
+```
+
+> Example Response
+
+```json
+{
+    "message": {
+        "success": "Transaction retrieved successfully"
+    },
+    "data": {
+        "transaction": {
+            "id": 1,
+            "account_balance": 5000,
+            "credit": 100,
+            "debit": null,
+            "description": "A test transaction",
+            "customer": 1,
+            "account": 1,
+            "is_deleted": false,
+            "created_at": "2021-04-28 15:12:07",
+            "updated_at": "2021-04-28 15:12:07"
+        }
+    }
+}
+```
+This endpoint is used to fetch transaction details.
+
+### HTTP Request
+
+`GET /transaction/{transaction_id}`
+
+
+### HEADERS
+|Content-Type|Authorization|
+|-----------|------------|
+|application/json|Bearer `{{TOKEN}}`|
+
+## Update transaction details
+```shell
+curl --location --request PATCH 'http://127.0.0.1:3333/transaction/10' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao' \
+--data-raw '{
+    "credit": 200
+}'
+```
+```python
+import requests
+import json
+
+url = "http://127.0.0.1:3333/transaction/10"
+
+payload = json.dumps({
+  "credit": 200
+})
+headers = {
+  'Content-Type': 'application/json',
+  'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao'
+}
+
+response = requests.request("PATCH", url, headers=headers, data=payload)
+
+print(response.text)
+
+```
+```javascript
+var axios = require('axios');
+var data = JSON.stringify({
+  "credit": 200
+});
+
+var config = {
+  method: 'patch',
+  url: 'http://127.0.0.1:3333/transaction/10',
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao'
+  },
+  data : data
+};
+
+axios(config)
+.then(function (response) {
+  console.log(JSON.stringify(response.data));
+})
+.catch(function (error) {
+  console.log(error);
+});
+
+```
+
+> Example Response
+
+```json
+{
+    "message": {
+        "success": "Transaction updated successfully"
+    }
+}
+```
+This endpoint is used to update transaction details.
+
+### HTTP Request
+
+`PATCH /transaction/{transaction_id}`
+
+
+### HEADERS
+|Content-Type|Authorization|
+|-----------|------------|
+|application/json|Bearer `{{TOKEN}}`|
+
+
+## Drop transaction
+```shell
+curl --location --request DELETE 'http://127.0.0.1:3333/transaction/10' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao'
+```
+```python
+import requests
+import json
+
+url = "http://127.0.0.1:3333/transaction/10"
+
+payload={}
+headers = {
+  'Content-Type': 'application/json',
+  'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao'
+}
+
+response = requests.request("DELETE", url, headers=headers, data=payload)
+
+print(response.text)
+
+```
+```javascript
+var axios = require('axios');
+
+var config = {
+  method: 'delete',
+  url: 'http://127.0.0.1:3333/transaction/10',
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao'
+  }
+};
+
+axios(config)
+.then(function (response) {
+  console.log(JSON.stringify(response.data));
+})
+.catch(function (error) {
+  console.log(error);
+});
+
+```
+
+> Example Response
+
+```json
+{
+    "message": {
+        "success": "Transaction deleted successfully"
+    }
+}
+```
+This endpoint is used to drop transactions.
+
+### HTTP Request
+
+`DELETE /transaction/{transaction_id}`
+
+
+### HEADERS
+|Content-Type|Authorization|
+|-----------|------------|
+|application/json|Bearer `{{TOKEN}}`|
+
+## Make deposit
+```shell
+curl --location --request POST 'http://127.0.0.1:3333/transaction/deposit' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao' \
+--data-raw '{
+    "customer": 1,
+    "account": 1,
+    "description": "Making a deposit",
+    "amount": 2000
+}'
+```
+```python
+import requests
+import json
+
+url = "http://127.0.0.1:3333/transaction/deposit"
+
+payload = json.dumps({
+  "customer": 1,
+  "account": 1,
+  "description": "Making a deposit",
+  "amount": 2000
+})
+headers = {
+  'Content-Type': 'application/json',
+  'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao'
+}
+
+response = requests.request("POST", url, headers=headers, data=payload)
+
+print(response.text)
+
+```
+```javascript
+var axios = require('axios');
+var data = JSON.stringify({
+  "customer": 1,
+  "account": 1,
+  "description": "Making a deposit",
+  "amount": 2000
+});
+
+var config = {
+  method: 'post',
+  url: 'http://127.0.0.1:3333/transaction/deposit',
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao'
+  },
+  data : data
+};
+
+axios(config)
+.then(function (response) {
+  console.log(JSON.stringify(response.data));
+})
+.catch(function (error) {
+  console.log(error);
+});
+
+```
+
+> Example Response
+
+```json
+{
+    "message": {
+        "success": "Deposit was successful"
+    },
+    "data": {
+        "transaction": {
+            "customer": 1,
+            "account": 1,
+            "description": "Making a deposit",
+            "credit": 2000,
+            "account_balance": 7000,
+            "created_at": "2021-05-05 16:13:03",
+            "updated_at": "2021-05-05 16:13:03",
+            "id": 11
+        }
+    }
+}
+```
+This endpoint is used to make deposits.
+
+### HTTP Request
+
+`POST /transaction/deposit`
+
+
+### HEADERS
+|Content-Type|Authorization|
+|-----------|------------|
+|application/json|Bearer `{{TOKEN}}`|
+
+## Make withdrawal
+```shell
+curl --location --request POST 'http://127.0.0.1:3333/transaction/withdrawal' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao' \
+--data-raw '{
+    "customer": 1,
+    "account": 1,
+    "description": "Making a withdrawal",
+    "amount": 1000
+}'
+```
+```python
+import requests
+import json
+
+url = "http://127.0.0.1:3333/transaction/withdrawal"
+
+payload = json.dumps({
+  "customer": 1,
+  "account": 1,
+  "description": "Making a withdrawal",
+  "amount": 1000
+})
+headers = {
+  'Content-Type': 'application/json',
+  'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao'
+}
+
+response = requests.request("POST", url, headers=headers, data=payload)
+
+print(response.text)
+
+```
+```javascript
+var axios = require('axios');
+var data = JSON.stringify({
+  "customer": 1,
+  "account": 1,
+  "description": "Making a withdrawal",
+  "amount": 1000
+});
+
+var config = {
+  method: 'post',
+  url: 'http://127.0.0.1:3333/transaction/withdrawal',
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao'
+  },
+  data : data
+};
+
+axios(config)
+.then(function (response) {
+  console.log(JSON.stringify(response.data));
+})
+.catch(function (error) {
+  console.log(error);
+});
+
+```
+
+> Example Response
+
+```json
+{
+    "message": {
+        "success": "Withdrawal was successful"
+    },
+    "data": {
+        "transaction": {
+            "customer": 1,
+            "account": 1,
+            "description": "Making a withdrawal",
+            "debit": 1000,
+            "account_balance": 6000,
+            "created_at": "2021-05-05 16:13:38",
+            "updated_at": "2021-05-05 16:13:38",
+            "id": 12
+        }
+    }
+}
+```
+This endpoint is used to make withdrawals.
+
+### HTTP Request
+
+`POST /transaction/withdrawal`
+
+
+### HEADERS
+|Content-Type|Authorization|
+|-----------|------------|
+|application/json|Bearer `{{TOKEN}}`|

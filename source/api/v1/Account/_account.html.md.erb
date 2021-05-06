@@ -1,24 +1,36 @@
-# User Role
+# Account
 
-## Create user role
+## Create account
 ```shell
-curl --location --request POST 'http://127.0.0.1:3333/user-role' \
+curl --location --request POST 'http://127.0.0.1:3333/account' \
 --header 'Content-Type: application/json' \
 --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao' \
 --data-raw '{
-    "name": "admin",
-    "user": 1
+    "bank_name": "GT Bank",
+    "account_number": "123456789",
+    "account_type": "individual savings",
+    "bvn": "123456789",
+    "currency": "NGN",
+    "denomination": 1000,
+    "balance": 5000,
+    "customer": 1
 }'
 ```
 ```python
 import requests
 import json
 
-url = "http://127.0.0.1:3333/user-role"
+url = "http://127.0.0.1:3333/account"
 
 payload = json.dumps({
-  "name": "admin",
-  "user": 1
+  "bank_name": "GT Bank",
+  "account_number": "123456789",
+  "account_type": "individual savings",
+  "bvn": "123456789",
+  "currency": "NGN",
+  "denomination": 1000,
+  "balance": 5000,
+  "customer": 1
 })
 headers = {
   'Content-Type': 'application/json',
@@ -28,17 +40,24 @@ headers = {
 response = requests.request("POST", url, headers=headers, data=payload)
 
 print(response.text)
+
 ```
 ```javascript
 var axios = require('axios');
 var data = JSON.stringify({
-  "name": "admin",
-  "user": 1
+  "bank_name": "GT Bank",
+  "account_number": "123456789",
+  "account_type": "individual savings",
+  "bvn": "123456789",
+  "currency": "NGN",
+  "denomination": 1000,
+  "balance": 5000,
+  "customer": 1
 });
 
 var config = {
   method: 'post',
-  url: 'http://127.0.0.1:3333/user-role',
+  url: 'http://127.0.0.1:3333/account',
   headers: {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao'
@@ -61,24 +80,30 @@ axios(config)
 ```json
 {
     "message": {
-        "success": "User role created successfully"
+        "success": "Account created successfully"
     },
     "data": {
-        "userRole": {
-            "name": "admin",
-            "user": 1,
-            "created_at": "2021-04-28 10:15:04",
-            "updated_at": "2021-04-28 10:15:04",
-            "id": 2
+        "account": {
+            "bank_name": "GT Bank",
+            "account_number": "123456789",
+            "account_type": "individual savings",
+            "bvn": "123456789",
+            "currency": "NGN",
+            "denomination": 1000,
+            "balance": 5000,
+            "customer": 1,
+            "created_at": "2021-04-28 10:28:13",
+            "updated_at": "2021-04-28 10:28:13",
+            "id": 1
         }
     }
 }
 ```
-This endpoint is used to create user roles.
+This endpoint is used to create accounts.
 
 ### HTTP Request
 
-`POST /user-role`
+`POST /account`
 
 
 ### HEADERS
@@ -86,9 +111,9 @@ This endpoint is used to create user roles.
 |-----------|------------|
 |application/json|Bearer `{{TOKEN}}`|
 
-## Fetch all user roles
+## Fetch accounts
 ```shell
-curl --location --request GET 'http://127.0.0.1:3333/user-role' \
+curl --location --request GET 'http://127.0.0.1:3333/account' \
 --header 'Content-Type: application/json' \
 --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao'
 ```
@@ -96,7 +121,7 @@ curl --location --request GET 'http://127.0.0.1:3333/user-role' \
 import requests
 import json
 
-url = "http://127.0.0.1:3333/user-role"
+url = "http://127.0.0.1:3333/account"
 
 payload={}
 headers = {
@@ -114,7 +139,7 @@ var axios = require('axios');
 
 var config = {
   method: 'get',
-  url: 'http://127.0.0.1:3333/user-role',
+  url: 'http://127.0.0.1:3333/account',
   headers: {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao'
@@ -136,53 +161,62 @@ axios(config)
 ```json
 {
     "message": {
-        "success": "User roles retrieved successfully"
+        "success": "Accounts retrieved successfully"
     },
     "data": {
-        "userRoles": [
+        "accounts": [
             {
                 "id": 1,
-                "name": "admin",
-                "user": 1,
+                "bank_name": "GT Bank",
+                "account_number": "123456789",
+                "account_type": "individual savings",
+                "bvn": "123456789",
+                "currency": "NGN",
+                "denomination": 1000,
+                "balance": 5000,
+                "customer": 1,
                 "is_deleted": false,
-                "created_at": "2021-04-28 11:13:17",
-                "updated_at": "2021-04-28 11:13:17",
-                "user_role_user": {
+                "created_at": "2021-04-28 11:28:13",
+                "updated_at": "2021-04-28 11:28:13",
+                "account_customer": {
                     "id": 1,
-                    "username": "test123",
-                    "email": "test@gmail.co",
-                    "app_key": null,
+                    "business_name": "Chronos software solutions",
+                    "unique_id": "123456789",
+                    "unique_id_type": "bvn",
+                    "first_name": "John",
+                    "last_name": "Doe",
+                    "other_names": "Smith",
+                    "mother_maiden_name": "Jane",
+                    "gender": "male",
+                    "marital_status": "single",
+                    "date_of_birth": null,
+                    "street": "12 Olaniyi street ",
+                    "city": "Ikeja",
+                    "state": "Lagos",
+                    "country": "Nigeria",
+                    "email": "company@gmail.com",
+                    "contact_number": "08000000001",
+                    "occupation": "Software Developer",
+                    "office_street": "229 Herbert Macaulay ",
+                    "office_city": "Yaba",
+                    "office_state": "Lagos",
+                    "office_country": "Nigeria",
+                    "next_of_kin": null,
+                    "geo_cordinates": null,
                     "is_deleted": false,
-                    "created_at": "2021-04-28 11:13:17",
-                    "updated_at": "2021-04-28 11:13:17"
-                }
-            },
-            {
-                "id": 2,
-                "name": "admin",
-                "user": 1,
-                "is_deleted": false,
-                "created_at": "2021-04-28 11:15:04",
-                "updated_at": "2021-04-28 11:15:04",
-                "user_role_user": {
-                    "id": 1,
-                    "username": "test123",
-                    "email": "test@gmail.co",
-                    "app_key": null,
-                    "is_deleted": false,
-                    "created_at": "2021-04-28 11:13:17",
-                    "updated_at": "2021-04-28 11:13:17"
+                    "created_at": "2021-04-28 11:22:07",
+                    "updated_at": "2021-04-28 11:22:07"
                 }
             }
         ]
     }
 }
 ```
-This endpoint is used to fetch all user roles.
+This endpoint is used to fetch accounts.
 
 ### HTTP Request
 
-`GET /user-role`
+`GET /account`
 
 
 ### HEADERS
@@ -190,9 +224,9 @@ This endpoint is used to fetch all user roles.
 |-----------|------------|
 |application/json|Bearer `{{TOKEN}}`|
 
-## Fetch user role details
+## Fetch account details
 ```shell
-curl --location --request GET 'http://127.0.0.1:3333/user-role/1' \
+curl --location --request GET 'http://127.0.0.1:3333/account/1' \
 --header 'Content-Type: application/json' \
 --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao'
 ```
@@ -200,7 +234,7 @@ curl --location --request GET 'http://127.0.0.1:3333/user-role/1' \
 import requests
 import json
 
-url = "http://127.0.0.1:3333/user-role/1"
+url = "http://127.0.0.1:3333/account/1"
 
 payload={}
 headers = {
@@ -218,7 +252,7 @@ var axios = require('axios');
 
 var config = {
   method: 'get',
-  url: 'http://127.0.0.1:3333/user-role/1',
+  url: 'http://127.0.0.1:3333/account/1',
   headers: {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao'
@@ -240,34 +274,60 @@ axios(config)
 ```json
 {
     "message": {
-        "success": "User role retrieved successfully"
+        "success": "Account retrieved successfully"
     },
     "data": {
-        "userRole": {
+        "account": {
             "id": 1,
-            "name": "admin",
-            "user": 1,
+            "bank_name": "GT Bank",
+            "account_number": "123456789",
+            "account_type": "individual savings",
+            "bvn": "123456789",
+            "currency": "NGN",
+            "denomination": 1000,
+            "balance": 5000,
+            "customer": 1,
             "is_deleted": false,
-            "created_at": "2021-04-28 11:13:17",
-            "updated_at": "2021-04-28 11:13:17",
-            "user_role_user": {
+            "created_at": "2021-04-28 11:28:13",
+            "updated_at": "2021-04-28 11:28:13",
+            "account_customer": {
                 "id": 1,
-                "username": "test123",
-                "email": "test@gmail.co",
-                "app_key": null,
+                "business_name": "Chronos software solutions",
+                "unique_id": "123456789",
+                "unique_id_type": "bvn",
+                "first_name": "John",
+                "last_name": "Doe",
+                "other_names": "Smith",
+                "mother_maiden_name": "Jane",
+                "gender": "male",
+                "marital_status": "single",
+                "date_of_birth": null,
+                "street": "12 Olaniyi street ",
+                "city": "Ikeja",
+                "state": "Lagos",
+                "country": "Nigeria",
+                "email": "company@gmail.com",
+                "contact_number": "08000000001",
+                "occupation": "Software Developer",
+                "office_street": "229 Herbert Macaulay ",
+                "office_city": "Yaba",
+                "office_state": "Lagos",
+                "office_country": "Nigeria",
+                "next_of_kin": null,
+                "geo_cordinates": null,
                 "is_deleted": false,
-                "created_at": "2021-04-28 11:13:17",
-                "updated_at": "2021-04-28 11:13:17"
+                "created_at": "2021-04-28 11:22:07",
+                "updated_at": "2021-04-28 11:22:07"
             }
         }
     }
 }
 ```
-This endpoint is used to fetch a specific user role.
+This endpoint is used to fetch account details.
 
 ### HTTP Request
 
-`GET /user-role/{user_role_id}`
+`GET /account/{account_id}`
 
 
 ### HEADERS
@@ -275,27 +335,25 @@ This endpoint is used to fetch a specific user role.
 |-----------|------------|
 |application/json|Bearer `{{TOKEN}}`|
 
-## Update user role details
+## Update account details
 ```shell
-curl --location --request PATCH 'http://127.0.0.1:3333/user-role/1' \
+curl --location --request PATCH 'http://127.0.0.1:3333/account/1' \
 --header 'Content-Type: application/json' \
---header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao' \
 --data-raw '{
-    "name": "partner"
+    "bank_name": "Access Bank"
 }'
 ```
 ```python
 import requests
 import json
 
-url = "http://127.0.0.1:3333/user-role/1"
+url = "http://127.0.0.1:3333/account/1"
 
 payload = json.dumps({
-  "name": "partner"
+  "bank_name": "Access Bank"
 })
 headers = {
-  'Content-Type': 'application/json',
-  'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao'
+  'Content-Type': 'application/json'
 }
 
 response = requests.request("PATCH", url, headers=headers, data=payload)
@@ -306,15 +364,14 @@ print(response.text)
 ```javascript
 var axios = require('axios');
 var data = JSON.stringify({
-  "name": "partner"
+  "bank_name": "Access Bank"
 });
 
 var config = {
   method: 'patch',
-  url: 'http://127.0.0.1:3333/user-role/1',
+  url: 'http://127.0.0.1:3333/account/1',
   headers: {
-    'Content-Type': 'application/json',
-    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao'
+    'Content-Type': 'application/json'
   },
   data : data
 };
@@ -334,15 +391,15 @@ axios(config)
 ```json
 {
     "message": {
-        "success": "User role updated successfully"
+        "success": "Account updated successfully"
     }
 }
 ```
-This endpoint is used to update a specific user role.
+This endpoint is used to update account details.
 
 ### HTTP Request
 
-`PATCH /user-role/{user_role_id}`
+`PATCH /account/{account_id}`
 
 
 ### HEADERS
@@ -351,9 +408,9 @@ This endpoint is used to update a specific user role.
 |application/json|Bearer `{{TOKEN}}`|
 
 
-## Drop user role
+## Drop account
 ```shell
-curl --location --request DELETE 'http://127.0.0.1:3333/user-role/1' \
+curl --location --request DELETE 'http://127.0.0.1:3333/account/1' \
 --header 'Content-Type: application/json' \
 --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao'
 ```
@@ -361,7 +418,7 @@ curl --location --request DELETE 'http://127.0.0.1:3333/user-role/1' \
 import requests
 import json
 
-url = "http://127.0.0.1:3333/user-role/1"
+url = "http://127.0.0.1:3333/account/1"
 
 payload={}
 headers = {
@@ -379,7 +436,7 @@ var axios = require('axios');
 
 var config = {
   method: 'delete',
-  url: 'http://127.0.0.1:3333/user-role/1',
+  url: 'http://127.0.0.1:3333/account/1',
   headers: {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao'
@@ -401,15 +458,15 @@ axios(config)
 ```json
 {
     "message": {
-        "success": "User role deleted successfully"
+        "success": "Account deleted successfully"
     }
 }
 ```
-This endpoint is used to drop a user role.
+This endpoint is used to drop accounts.
 
 ### HTTP Request
 
-`DELETE /user-role/{user_role_id}`
+`DELETE /account/{account_id}`
 
 
 ### HEADERS

@@ -1,12 +1,19 @@
-# User Role
+# Financier
 
-## Create user role
+## Create financier
 ```shell
-curl --location --request POST 'http://127.0.0.1:3333/user-role' \
+curl --location --request POST 'http://127.0.0.1:3333/financier' \
 --header 'Content-Type: application/json' \
 --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao' \
 --data-raw '{
-    "name": "admin",
+    "name": "Paystack",
+    "street": "12 Olaniyi street ",
+    "city": "Ikeja",
+    "state": "Lagos",
+    "country": "Nigeria",
+    "email": "company@gmail.com",
+    "contact_number": "08000000001",
+    "business_registration": "a1b2c3",
     "user": 1
 }'
 ```
@@ -14,10 +21,17 @@ curl --location --request POST 'http://127.0.0.1:3333/user-role' \
 import requests
 import json
 
-url = "http://127.0.0.1:3333/user-role"
+url = "http://127.0.0.1:3333/financier"
 
 payload = json.dumps({
-  "name": "admin",
+  "name": "Paystack",
+  "street": "12 Olaniyi street ",
+  "city": "Ikeja",
+  "state": "Lagos",
+  "country": "Nigeria",
+  "email": "company@gmail.com",
+  "contact_number": "08000000001",
+  "business_registration": "a1b2c3",
   "user": 1
 })
 headers = {
@@ -28,17 +42,25 @@ headers = {
 response = requests.request("POST", url, headers=headers, data=payload)
 
 print(response.text)
+
 ```
 ```javascript
 var axios = require('axios');
 var data = JSON.stringify({
-  "name": "admin",
+  "name": "Paystack",
+  "street": "12 Olaniyi street ",
+  "city": "Ikeja",
+  "state": "Lagos",
+  "country": "Nigeria",
+  "email": "company@gmail.com",
+  "contact_number": "08000000001",
+  "business_registration": "a1b2c3",
   "user": 1
 });
 
 var config = {
   method: 'post',
-  url: 'http://127.0.0.1:3333/user-role',
+  url: 'http://127.0.0.1:3333/financier',
   headers: {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao'
@@ -61,24 +83,31 @@ axios(config)
 ```json
 {
     "message": {
-        "success": "User role created successfully"
+        "success": "Financier created successfully"
     },
     "data": {
-        "userRole": {
-            "name": "admin",
+        "financier": {
+            "name": "Paystack",
+            "street": "12 Olaniyi street ",
+            "city": "Ikeja",
+            "state": "Lagos",
+            "country": "Nigeria",
+            "email": "company@gmail.com",
+            "contact_number": "08000000001",
+            "business_registration": "a1b2c3",
             "user": 1,
-            "created_at": "2021-04-28 10:15:04",
-            "updated_at": "2021-04-28 10:15:04",
-            "id": 2
+            "created_at": "2021-04-28 10:30:23",
+            "updated_at": "2021-04-28 10:30:23",
+            "id": 1
         }
     }
 }
 ```
-This endpoint is used to create user roles.
+This endpoint is used to create financiers.
 
 ### HTTP Request
 
-`POST /user-role`
+`POST /financier`
 
 
 ### HEADERS
@@ -86,9 +115,9 @@ This endpoint is used to create user roles.
 |-----------|------------|
 |application/json|Bearer `{{TOKEN}}`|
 
-## Fetch all user roles
+## Fetch financiers
 ```shell
-curl --location --request GET 'http://127.0.0.1:3333/user-role' \
+curl --location --request GET 'http://127.0.0.1:3333/financier' \
 --header 'Content-Type: application/json' \
 --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao'
 ```
@@ -96,7 +125,7 @@ curl --location --request GET 'http://127.0.0.1:3333/user-role' \
 import requests
 import json
 
-url = "http://127.0.0.1:3333/user-role"
+url = "http://127.0.0.1:3333/financier"
 
 payload={}
 headers = {
@@ -114,7 +143,7 @@ var axios = require('axios');
 
 var config = {
   method: 'get',
-  url: 'http://127.0.0.1:3333/user-role',
+  url: 'http://127.0.0.1:3333/financier',
   headers: {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao'
@@ -136,35 +165,25 @@ axios(config)
 ```json
 {
     "message": {
-        "success": "User roles retrieved successfully"
+        "success": "Financiers retrieved successfully"
     },
     "data": {
-        "userRoles": [
+        "financiers": [
             {
                 "id": 1,
-                "name": "admin",
+                "name": "Paystack",
+                "street": "12 Olaniyi street ",
+                "city": "Ikeja",
+                "state": "Lagos",
+                "country": "Nigeria",
+                "email": "company@gmail.com",
+                "contact_number": "08000000001",
+                "business_registration": "a1b2c3",
                 "user": 1,
                 "is_deleted": false,
-                "created_at": "2021-04-28 11:13:17",
-                "updated_at": "2021-04-28 11:13:17",
-                "user_role_user": {
-                    "id": 1,
-                    "username": "test123",
-                    "email": "test@gmail.co",
-                    "app_key": null,
-                    "is_deleted": false,
-                    "created_at": "2021-04-28 11:13:17",
-                    "updated_at": "2021-04-28 11:13:17"
-                }
-            },
-            {
-                "id": 2,
-                "name": "admin",
-                "user": 1,
-                "is_deleted": false,
-                "created_at": "2021-04-28 11:15:04",
-                "updated_at": "2021-04-28 11:15:04",
-                "user_role_user": {
+                "created_at": "2021-04-28 11:30:23",
+                "updated_at": "2021-04-28 11:30:23",
+                "financier_user": {
                     "id": 1,
                     "username": "test123",
                     "email": "test@gmail.co",
@@ -178,11 +197,11 @@ axios(config)
     }
 }
 ```
-This endpoint is used to fetch all user roles.
+This endpoint is used to fetch financiers.
 
 ### HTTP Request
 
-`GET /user-role`
+`GET /financier`
 
 
 ### HEADERS
@@ -190,9 +209,9 @@ This endpoint is used to fetch all user roles.
 |-----------|------------|
 |application/json|Bearer `{{TOKEN}}`|
 
-## Fetch user role details
+## Fetch financier details
 ```shell
-curl --location --request GET 'http://127.0.0.1:3333/user-role/1' \
+curl --location --request GET 'http://127.0.0.1:3333/financier/1' \
 --header 'Content-Type: application/json' \
 --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao'
 ```
@@ -200,7 +219,7 @@ curl --location --request GET 'http://127.0.0.1:3333/user-role/1' \
 import requests
 import json
 
-url = "http://127.0.0.1:3333/user-role/1"
+url = "http://127.0.0.1:3333/financier/1"
 
 payload={}
 headers = {
@@ -218,7 +237,7 @@ var axios = require('axios');
 
 var config = {
   method: 'get',
-  url: 'http://127.0.0.1:3333/user-role/1',
+  url: 'http://127.0.0.1:3333/financier/1',
   headers: {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao'
@@ -240,17 +259,24 @@ axios(config)
 ```json
 {
     "message": {
-        "success": "User role retrieved successfully"
+        "success": "Financier retrieved successfully"
     },
     "data": {
-        "userRole": {
+        "financier": {
             "id": 1,
-            "name": "admin",
+            "name": "Paystack",
+            "street": "12 Olaniyi street ",
+            "city": "Ikeja",
+            "state": "Lagos",
+            "country": "Nigeria",
+            "email": "company@gmail.com",
+            "contact_number": "08000000001",
+            "business_registration": "a1b2c3",
             "user": 1,
             "is_deleted": false,
-            "created_at": "2021-04-28 11:13:17",
-            "updated_at": "2021-04-28 11:13:17",
-            "user_role_user": {
+            "created_at": "2021-04-28 11:30:23",
+            "updated_at": "2021-04-28 11:30:23",
+            "financier_user": {
                 "id": 1,
                 "username": "test123",
                 "email": "test@gmail.co",
@@ -263,11 +289,11 @@ axios(config)
     }
 }
 ```
-This endpoint is used to fetch a specific user role.
+This endpoint is used to fetch financier details.
 
 ### HTTP Request
 
-`GET /user-role/{user_role_id}`
+`GET /financier/{financier_id}`
 
 
 ### HEADERS
@@ -275,23 +301,23 @@ This endpoint is used to fetch a specific user role.
 |-----------|------------|
 |application/json|Bearer `{{TOKEN}}`|
 
-## Update user role details
+## Update financier details
 ```shell
-curl --location --request PATCH 'http://127.0.0.1:3333/user-role/1' \
+curl --location --request PATCH 'http://127.0.0.1:3333/financier/1' \
 --header 'Content-Type: application/json' \
 --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao' \
 --data-raw '{
-    "name": "partner"
+    "name": "Flutterwave"
 }'
 ```
 ```python
 import requests
 import json
 
-url = "http://127.0.0.1:3333/user-role/1"
+url = "http://127.0.0.1:3333/financier/1"
 
 payload = json.dumps({
-  "name": "partner"
+  "name": "Flutterwave"
 })
 headers = {
   'Content-Type': 'application/json',
@@ -306,12 +332,12 @@ print(response.text)
 ```javascript
 var axios = require('axios');
 var data = JSON.stringify({
-  "name": "partner"
+  "name": "Flutterwave"
 });
 
 var config = {
   method: 'patch',
-  url: 'http://127.0.0.1:3333/user-role/1',
+  url: 'http://127.0.0.1:3333/financier/1',
   headers: {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao'
@@ -334,15 +360,15 @@ axios(config)
 ```json
 {
     "message": {
-        "success": "User role updated successfully"
+        "success": "Financier updated successfully"
     }
 }
 ```
-This endpoint is used to update a specific user role.
+This endpoint is used to update financier details.
 
 ### HTTP Request
 
-`PATCH /user-role/{user_role_id}`
+`PATCH /financier/{financier_id}`
 
 
 ### HEADERS
@@ -351,9 +377,9 @@ This endpoint is used to update a specific user role.
 |application/json|Bearer `{{TOKEN}}`|
 
 
-## Drop user role
+## Drop financier
 ```shell
-curl --location --request DELETE 'http://127.0.0.1:3333/user-role/1' \
+curl --location --request DELETE 'http://127.0.0.1:3333/financier/1' \
 --header 'Content-Type: application/json' \
 --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao'
 ```
@@ -361,7 +387,7 @@ curl --location --request DELETE 'http://127.0.0.1:3333/user-role/1' \
 import requests
 import json
 
-url = "http://127.0.0.1:3333/user-role/1"
+url = "http://127.0.0.1:3333/financier/1"
 
 payload={}
 headers = {
@@ -379,7 +405,7 @@ var axios = require('axios');
 
 var config = {
   method: 'delete',
-  url: 'http://127.0.0.1:3333/user-role/1',
+  url: 'http://127.0.0.1:3333/financier/1',
   headers: {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsImlhdCI6MTYxOTYwMTIwOH0.EbCB7VSvM02V7aR9yIfwBxs0iqHQX1OuYGw1twpSjao'
@@ -401,15 +427,15 @@ axios(config)
 ```json
 {
     "message": {
-        "success": "User role deleted successfully"
+        "success": "Financier deleted successfully"
     }
 }
 ```
-This endpoint is used to drop a user role.
+This endpoint is used to drop financiers.
 
 ### HTTP Request
 
-`DELETE /user-role/{user_role_id}`
+`DELETE /financier/{financier_id}`
 
 
 ### HEADERS
